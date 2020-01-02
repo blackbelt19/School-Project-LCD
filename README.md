@@ -1,8 +1,8 @@
 # School-Project-LCD
 Requires two libraries (will attach later)
 
-AdaFruit_GFX library
+AdaFruit_GFX library: 
   Use the library Manager to Install
   
-MCUFRIEND
+MCUFRIEND: 
   Is Included in libraries folder
