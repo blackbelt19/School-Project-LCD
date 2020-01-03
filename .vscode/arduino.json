@@ -1,0 +1,4 @@
+{
+    "sketch": "Main\\main.ino",
+    "board": "arduino:avr:leonardo"
+}

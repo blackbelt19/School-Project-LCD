@@ -10,6 +10,8 @@
                 "UNICODE",
                 "_UNICODE"
             ],
+            "forcedInclude": [
+            ],
             "intelliSenseMode": "msvc-x64"
         }
     ],
