@@ -21,7 +21,7 @@ MCUFRIEND_kbv tft;     //Initlize screen
 const int XP = 8, XM = A2, YP = A3, YM = 9; //ID=0x9341     //Calibration Values
 const int TS_LEFT = 896, TS_RT = 132, TS_TOP = 80, TS_BOT = 894;
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);  //Set Touchscreen Vals
-
+int pixel_x, pixel_y; 
 
 Adafruit_GFX_Button main_but; //Set Button 
 void setup(void)
@@ -40,7 +40,8 @@ void setup(void)
 
 void loop(void)
 {
-
+  int val=Touch_getXY;
+  Serial.println(val);
   
 
  
