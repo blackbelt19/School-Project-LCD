@@ -40,5 +40,5 @@ void startupTEXT(void){
     tft.print("Developed by:");
     tft.setTextSize(1);
     tft.setCursor(50, 200);
-    tft.print(" Engineering Students");
+    tft.print(" Engineering Students");  
 }
