@@ -6,7 +6,9 @@ All right reserverd 2020
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <MCUFRIEND_kbv.h>   // Hardware-specific library
 MCUFRIEND_kbv tft;     //Initlize screen      
-
+#include <TouchScreen.h>
+#define MINPRESSURE 200
+#define MAXPRESSURE 1000
 #include <FreeDefaultFonts.h>
 
 #define BLACK   0x0000   //Define Basic Colors
@@ -15,6 +17,13 @@ MCUFRIEND_kbv tft;     //Initlize screen
 #define WHITE   0xFFFF
 #define GREY    0x8410
 
+
+const int XP = 8, XM = A2, YP = A3, YM = 9; //ID=0x9341     //Calibration Values
+const int TS_LEFT = 896, TS_RT = 132, TS_TOP = 80, TS_BOT = 894;
+TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);  //Set Touchscreen Vals
+
+
+Adafruit_GFX_Button main_but; //Set Button 
 void setup(void)
 {
     Serial.begin(9600);  //Start Serial
@@ -57,4 +66,18 @@ void startupSCREEN(void){
     }
     delay(1000);
     tft.fillScreen(BLACK);   //Clear Screen
+}
+bool Touch_getXY(void)      //Gets Touchscreen Values
+{
+    TSPoint p = ts.getPoint();
+    pinMode(YP, OUTPUT);      //restore shared pins
+    pinMode(XM, OUTPUT);
+    digitalWrite(YP, HIGH);   //because TFT control pins
+    digitalWrite(XM, HIGH);
+    bool pressed = (p.z > MINPRESSURE && p.z < MAXPRESSURE);
+    if (pressed) {
+        pixel_x = map(p.x, TS_LEFT, TS_RT, 0, tft.width()); //.kbv makes sense to me
+        pixel_y = map(p.y, TS_TOP, TS_BOT, 0, tft.height());
+    }
+    return pressed;
 }
