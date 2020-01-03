@@ -20,6 +20,17 @@ void setup(void)
     delay(50);
     tft.fillScreen(BLACK);
     startupTEXT();
+
+    for(int i=0; i<300; i=i+2){
+      if(i==0){
+        delay(1000);
+      }
+      if(i==200){
+        delay(1500);
+      }
+      tft.fillRect(0,300, i, 10, WHITE);
+      delay(50);
+    }
 }
 
 void loop(void)
@@ -40,5 +51,5 @@ void startupTEXT(void){
     tft.print("Developed by:");
     tft.setTextSize(1);
     tft.setCursor(50, 200);
-    tft.print(" Engineering Students");  
+    tft.print(" The Superior Major");  
 }
